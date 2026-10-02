@@ -1,0 +1,31 @@
+{
+  "format": "usvnav-course/2",
+  "world": {"boundary": [[0,25],[400,25],[400,125],[0,125]]},
+  "start": {"x":25,"y":75,"heading_rad":0},
+  "waypoints": [
+    {"x":100,"y":75,"arrival_radius_m":5},
+    {"x":175,"y":75,"arrival_radius_m":5},
+    {"x":250,"y":75,"arrival_radius_m":5},
+    {"x":325,"y":75,"arrival_radius_m":5},
+    {"x":325,"y":35,"arrival_radius_m":5},
+    {"x":245,"y":35,"arrival_radius_m":5},
+    {"x":165,"y":35,"arrival_radius_m":5},
+    {"x":85,"y":35,"arrival_radius_m":5},
+    {"x":25,"y":75,"arrival_radius_m":3}
+  ],
+  "bodies": [
+    {"class":"dock","primitive":"rect","x":90,"y":115,"length_m":24,"width_m":10,"heading_rad":0},
+    {"class":"dock","primitive":"rect","x":210,"y":115,"length_m":28,"width_m":12,"heading_rad":0},
+    {"class":"dock","primitive":"rect","x":320,"y":112,"length_m":18,"width_m":8,"heading_rad":0.25},
+    {"class":"dock","primitive":"rect","x":130,"y":35,"length_m":20,"width_m":10,"heading_rad":0},
+    {"class":"pier","primitive":"rect","x":130,"y":62,"length_m":12,"width_m":8,"heading_rad":0.3},
+    {"class":"pier","primitive":"rect","x":225,"y":90,"length_m":18,"width_m":6,"heading_rad":-0.3},
+    {"class":"moored_vessel","primitive":"rect","x":270,"y":104,"length_m":25,"width_m":6,"heading_rad":0},
+    {"class":"moored_vessel","primitive":"rect","x":50,"y":50,"length_m":18,"width_m":5,"heading_rad":0.25},
+    {"class":"buoy","primitive":"circle","x":115,"y":85,"diameter_m":0.6},
+    {"class":"buoy","primitive":"circle","x":150,"y":52,"diameter_m":0.6},
+    {"class":"buoy","primitive":"circle","x":195,"y":92,"diameter_m":0.6},
+    {"class":"buoy","primitive":"circle","x":285,"y":63,"diameter_m":0.6}
+  ],
+  "traffic": [], "lanes": []
+}

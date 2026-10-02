@@ -1,0 +1,6 @@
+usvnav 0.1.0
+commit 2ad6406c4838
+built 2026-10-01T14:37:43+09:00
+
+This is the build of the Track 1 kit you have. Quote the three lines above when you
+write to the organisers; the kit's zip checksum is published beside the download.

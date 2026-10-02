@@ -1,0 +1,78 @@
+{
+  "format": "usvnav-course/2",
+  "world": {
+    "boundary": [
+      [
+        0.0,
+        60.0
+      ],
+      [
+        230.0,
+        60.0
+      ],
+      [
+        230.0,
+        90.0
+      ],
+      [
+        0.0,
+        90.0
+      ]
+    ],
+    "terrain_extent": [
+      -70.7107,
+      -10.7107,
+      300.7107,
+      160.7107
+    ]
+  },
+  "start": {
+    "x": 55.6,
+    "y": 75.0,
+    "heading_rad": 0.0
+  },
+  "waypoints": [
+    {
+      "x": 100.6,
+      "y": 75.0,
+      "arrival_radius_m": 5.0
+    },
+    {
+      "x": 145.6,
+      "y": 75.0,
+      "arrival_radius_m": 3.0
+    }
+  ],
+  "bodies": [
+    {
+      "class": "buoy",
+      "primitive": "circle",
+      "x": 79.6602,
+      "y": 75.2152,
+      "diameter_m": 0.6
+    },
+    {
+      "class": "buoy",
+      "primitive": "circle",
+      "x": 79.6602,
+      "y": 79.4339,
+      "diameter_m": 0.6
+    },
+    {
+      "class": "buoy",
+      "primitive": "circle",
+      "x": 121.4529,
+      "y": 74.7952,
+      "diameter_m": 0.6
+    },
+    {
+      "class": "buoy",
+      "primitive": "circle",
+      "x": 121.4529,
+      "y": 71.5131,
+      "diameter_m": 0.6
+    }
+  ],
+  "traffic": [],
+  "lanes": []
+}

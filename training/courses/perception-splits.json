@@ -1,0 +1,5 @@
+{
+  "train": ["../../sets/practice/courses/practice-01.json", "../../sets/practice/courses/practice-02.json", "dock-train.json"],
+  "val": ["../../sets/practice/courses/practice-03.json", "dock-val.json"],
+  "test": ["../../sets/practice/courses/practice-04.json", "dock-test.json"]
+}
