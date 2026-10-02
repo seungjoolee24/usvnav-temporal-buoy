@@ -70,7 +70,8 @@ def load_reviewed_curriculum(manifest_path, course_dir, stage, history_frames):
     if metadata['history_frames'] != history_frames:
         raise ValueError('History length must match the reviewed curriculum')
     selected = [row for row in proposal['train'] if row['level'] <= stage]
-    validation = [row for row in proposal['val'] if row['level'] == stage]
+    validation = [row for row in proposal['val']
+                  if row['level'] == stage or stage in row.get('evaluation_stages', [])]
     course_dir.mkdir(parents=True, exist_ok=False)
     for row in selected + validation:
         content = (manifest_path.parent / row['file']).read_bytes()
@@ -251,7 +252,7 @@ def main():
                 getattr(model.policy.features_extractor, name).load_state_dict(getattr(previous, name).state_dict())
     model.set_logger(configure(str(output / 'logs'), ['csv', 'json']))
     source_names = ('train_buoy_navigation.py', 'buoy_curriculum.py', 'buoy_policy.py', 'buoy_loss_candidate.py',
-                    'temporal_buoy_policy.py', 'temporal_buoy_curriculum.py',
+                    'temporal_buoy_policy.py', 'temporal_buoy_curriculum.py', 'varied_buoy_curriculum.py',
                     'buoy_supervision.py', 'rgb_navigation_env.py', 'train_rgb_navigation.py')
     source = output / 'source'
     source.mkdir()
