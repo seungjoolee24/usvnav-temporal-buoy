@@ -4,16 +4,13 @@
 최근 탑뷰 4장·자기 이동 정렬·GRU·직접 목표 좌표 분기와 부표 2→4→6개 환경을
 포함합니다. 아래의 기존 RGB 노트북 안내는 이전 모델용입니다.
 
-1. GitHub의 새 비공개 저장소에 준비한 소스와 코스 설정을 올립니다.
-2. Colab의 **파일 → 노트북 열기 → GitHub**에서 저장소를 연결하고 새 노트북을
-   엽니다. 비공개 저장소 접근은 본인 계정에서 허용합니다. 노트북 파일 자체를
-   Colab에 업로드하는 방식도 가능합니다.
+1. 준비한 코드와 코스 설정은 [GitHub 저장소](https://github.com/seungjoolee24/usvnav-temporal-buoy)에 있습니다.
+2. 저장소가 공개 상태라면 [새 Colab 노트북](https://colab.research.google.com/github/seungjoolee24/usvnav-temporal-buoy/blob/main/training/notebooks/train_temporal_buoy_colab.ipynb)을
+   바로 엽니다. Google 계정으로 로그인하며 별도 GitHub 승인은 필요 없습니다.
 3. **런타임 → 런타임 유형 변경 → GPU**를 선택합니다. 소스 셀의 `GITHUB_URL`을
-   실제 저장소 URL로 지정하고 `GITHUB_PRIVATE=True`를 유지합니다.
-4. 비공개 소스 clone에는 해당 저장소 읽기 권한의 토큰이 필요합니다. Colab의
-   보안 비밀에 `GITHUB_TOKEN`으로 저장하거나 실행 셀의 숨김 입력에 입력합니다.
-   토큰은 코드·URL·출력에 기록하지 않습니다. 인증 준비가 어려우면 `SOURCE_MODE='zip'`
-   으로 바꾸고 제공한 소스 ZIP을 업로드합니다.
+   실제 저장소 URL로 지정하고 `GITHUB_PRIVATE=False`를 유지합니다.
+4. 소스 셀을 실행하면 공개 코드를 clone합니다. 제공한 소스 ZIP을 사용하는 경우에는
+   `SOURCE_MODE='zip'`으로 바꾸어 업로드합니다.
 5. Drive 저장 셀을 본인 계정으로 승인한 뒤 모델·환경 이미지를 확인합니다.
    원하는 구성이라면 `CONFIRM_ENVIRONMENT=True`로 설정합니다. 기본 첫 실험은
    1단계 4,096결정이며, 사용자 확인 없이 학습 셀이 진행되지 않습니다.

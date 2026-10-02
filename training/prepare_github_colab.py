@@ -42,16 +42,15 @@ print('GPU:', torch.cuda.get_device_name(0), 'CPU cores:', os.cpu_count())
 '''),
 cell('markdown', 'source-note', '''
 ## GitHub 소스 가져오기
-GITHUB_URL을 본인의 저장소 URL로 설정합니다. 비공개 저장소는 Colab 보안 비밀의
-`GITHUB_TOKEN`(해당 저장소 읽기 권한) 또는 숨김 입력을 사용합니다.
-토큰을 코드·GitHub URL·채팅에 넣지 마세요. GitHub 토큰 준비가 어렵다면
-SOURCE_MODE='zip'으로 바꾸어 제공한 소스 ZIP을 업로드할 수 있습니다.
+아래 공개 GitHub 저장소에서 코드를 가져옵니다. 별도 GitHub 토큰은 필요 없습니다.
+GITHUB_URL과 GITHUB_REF가 맞는지 확인하고 셀을 실행하세요.
+필요하면 SOURCE_MODE='zip'으로 바꾸어 제공한 소스 ZIP을 업로드할 수도 있습니다.
 '''),
 cell('code', 'source', r'''
 SOURCE_MODE = 'github'  # 'github' 또는 'zip'
 GITHUB_URL = 'https://github.com/seungjoolee24/usvnav-temporal-buoy.git'
 GITHUB_REF = 'main'
-GITHUB_PRIVATE = True
+GITHUB_PRIVATE = False
 PROJECT_ROOT = Path('/content/usvnav-temporal-' + datetime.now(timezone.utc).strftime('%Y%m%d-%H%M%S-%f'))
 if SOURCE_MODE == 'github':
     from urllib.parse import urlparse
@@ -248,17 +247,15 @@ def export_github_ready(destination):
         shutil.copy2(source, target)
     readme = '''# Temporal top-view buoy navigation
 
-Private training source for a shared CNN, ego-motion alignment, 64-unit GRU,
+Training source for a shared CNN, ego-motion alignment, 64-unit GRU,
 direct waypoint/goal input and residual PPO control. Four 200×200 RGB frames
 span 1.5 seconds. Static buoy curriculum: 2 / 4 / 6 buoys, 40 / 30 / 24 m channels.
 
 [Open the GPU notebook in Colab](https://colab.research.google.com/github/seungjoolee24/usvnav-temporal-buoy/blob/main/training/notebooks/train_temporal_buoy_colab.ipynb)
 
-Sign in to GitHub/Colab with the account that owns this private repository.
-Select a GPU runtime, run the setup cells, review the examples and set
+Open the public GitHub notebook in Colab and sign in to your Google account.
+No GitHub token is needed. Select a GPU runtime, run the setup cells, review the examples and set
 `CONFIRM_ENVIRONMENT=True` before the first 4,096-decision stage-1 experiment.
-For a private clone, use the Colab secret `GITHUB_TOKEN` with repository read
-permission or the notebook's hidden input. Keep credentials out of source.
 
 Checkpoints and logs are copied every 30 seconds to
 `MyDrive/usvnav-temporal-buoy-ppo/`. Resume from a temporal-policy
@@ -277,6 +274,21 @@ are excluded. No newly trained policy is claimed by this initial export.
 '''
     (destination / 'README.md').write_text(readme, encoding='utf-8')
     return dict(path=str(destination), files=len(selected)+1)
+
+
+def write_upload_notebook():
+    """Use the same training pipeline when private GitHub OAuth cannot open."""
+    book = notebook()
+    output = ROOT / 'training/notebooks/train_temporal_buoy_colab_upload.ipynb'
+    book['metadata']['colab']['name'] = output.name
+    for item in book['cells']:
+        if item['id'] == 'source':
+            item['source'] = [line.replace("SOURCE_MODE = 'github'", "SOURCE_MODE = 'zip'")
+                              for line in item['source']]
+        if item['cell_type'] == 'code':
+            compile(''.join(item['source']), item['id'], 'exec')
+    output.write_text(json.dumps(book, ensure_ascii=False, indent=1)+'\n', encoding='utf-8')
+    return output
 
 
 if __name__ == '__main__':
